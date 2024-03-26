@@ -1,0 +1,2 @@
+# abyss on paired-end reads Kmer 96 bp
+abyss-pe name=salmonella k=96 B=2G in='read1.fastq read2.fastq'
