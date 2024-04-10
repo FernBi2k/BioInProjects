@@ -1,0 +1,33 @@
+2.In your own words, please summarize the function of each of the commands (e.g., abyss-pe, k, B, etc) that you included in your code.
+
+The codes I used for the abyss output were:
+	- conda install -c bioconda -c conda-forge abyss
+	- abyss-pe name=unknown k=96 B=2G in='RBSB_S187_R1.fastq  RBSB_S187_R2.fastq'
+- The first line of code was to install Abyss so that I would be able to use it in Ubuntu. 
+- The second line of code assembles paired reads (abyss-pe) from the 2 files for my unknown genome titled "RBSB_S187_R1.fastq" and "RBSB_S187_R2.fastq". They are assembled into contigs named "unknown". The "k=96" refers to the k-mer size being used for the assembly algorithm. An appropriate k-mer size impacts the sensitivity and specificity of the algorithm during assembly. In this case, a k-mer size of 96 bases was used. The "B=2g" refers to the allocation of memory used by the device to run the algorithm. "B=2G" means 2 gigabytes of memory was used for the assembly process. 
+
+3.Using either output, perform a BLAST search to identify your species. Write your species name here:
+
+The species name is Bacillus sp. KBS0812
+
+4. Perform quality assessment using QUAST. You need find a reference genome and reference annotation to upload to QUAST for the best quality check. Which assembler gave you the higher quality output? How do you know?
+
+Assembly gave me the higher quality output. Comparing the abyss output and the spades output against the reference genome using QUAST, abyss had only a misassembly rate of 1 and its contigs were only 6 off. Other factors include N50 length and assembly size. 
+
+5) Describe what BUSCO is used for. What were the BUSCO values for your assembly?
+
+BUSCO is used for assessing the completeness of a genome. Using the abyss output assembly, the values for my BUSCO were "Status Complete" 
+
+7)In your own words, what is the function of each of the commands in your line of code?
+
+- For Prokka i used the codes 
+	- mamba activate genomeassembly - this activates the environment 
+	- conda install -c conda-forge -c bioconda -c defaults prokka - this installs the actual program prokka that will be used 
+
+8) What is the function of the genes/features you chose?
+	- recA - plays a crucial role in DNA repair
+	- 16S rRNA - forms the functional ribosome, which is essential for protein synthesis
+	- gyrA - an essential component of bacterial DNA replication and transcription
+
+9) RAST is job is pending at the time of submission 
+
