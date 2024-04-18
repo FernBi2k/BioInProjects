@@ -62,7 +62,7 @@ physeq
 
 #save physeq objects to load later
 ```{r}
-save(physeq,"RData/physeq.RData")
+save(physeq,file="RData/physeq.RData")
 ```
 
 
