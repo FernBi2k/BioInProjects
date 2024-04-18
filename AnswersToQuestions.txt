@@ -29,5 +29,6 @@ BUSCO is used for assessing the completeness of a genome. Using the abyss output
 	- 16S rRNA - forms the functional ribosome, which is essential for protein synthesis
 	- gyrA - an essential component of bacterial DNA replication and transcription
 
-9) RAST is job is pending at the time of submission 
+9) RAST is able to demonstrate the actual translations of each of my genes/features. I was able to get more info on the recA, 16s rRNA, and gyrA translations. 
 
+10)github link: https://github.com/FernBi2k/BioInProjects

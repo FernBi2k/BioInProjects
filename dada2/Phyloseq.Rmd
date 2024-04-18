@@ -1,0 +1,100 @@
+---
+title: "Phyloseq"
+author: "Reimon Fernandez"
+date: "2024-04-18"
+output: pdf_document
+---
+###Start of phyloseq
+
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("phyloseq")
+```
+
+#Load packages
+
+```{r}
+library(phyloseq)
+```
+
+```{r}
+library(dplyr)
+library(BiMiCo)
+```
+
+```{r}
+load("RData/taxa.RData")
+load("RData/seqtab.nochim.RData")
+```
+
+#import data
+```{r}
+metadata=read.csv("metadata.csv",header=TRUE,row.names = 1)
+```
+
+#create phyloseq object
+```{r}
+physeq=phyloseq(otu_table(seqtab.nochim,taxa_are_rows=FALSE),
+                sample_data(metadata),
+                tax_table(taxa))
+physeq
+```
+#remove the sequence itself and relace with asv 
+```{r}
+dna=Biostrings::DNAStringSet(taxa_names(physeq))
+names(dna)=taxa_names(physeq)
+physeq=merge_phyloseq(physeq,dna)
+taxa_names(physeq)=paste0("ASV",seq(ntaxa(physeq)))
+physeq
+```
+#remove mitochondria and chloroplast matches. remove all non bacterial sequences
+```{r}
+physeq=physeq%>%subset_taxa(Family!="Mitochondria" | is.na(Family) & Order!="Chloroplast" | is.na(Order))
+physeq
+```
+#removes all non bacterial sequiences
+```{r}
+physeq=rm_nonbac(physeq)
+physeq
+```
+
+#save physeq objects to load later
+```{r}
+save(physeq,"RData/physeq.RData")
+```
+
+
+
+
+
+
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
