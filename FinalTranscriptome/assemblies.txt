@@ -1,0 +1,4 @@
+stringtie/vancomycin01.transcripts.gtf
+stringtie/vancomycin02.transcripts.gtf
+stringtie/ramoplanin01.transcripts.gtf
+stringtie/ramoplanin02.transcripts.gtf
